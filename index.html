@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Perfil sensorial VAK</title>
+<meta name="description" content="Test gratuito para identificar si eres visual, auditivo o kinestésico. Cuestionario, lenguaje y pruebas de desempeño, con la lógica explicada. Tus respuestas no salen de tu navegador.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Perfil sensorial VAK: visual, auditivo o kinestésico">
+<meta property="og:description" content="Test gratuito para identificar si eres visual, auditivo o kinestésico. Cuestionario, lenguaje y pruebas de desempeño, con la lógica explicada. Tus respuestas no salen de tu navegador.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23131C26'/><rect x='6' y='16' width='5' height='10' fill='%232563D8'/><rect x='13.5' y='8' width='5' height='18' fill='%23E8B04A'/><rect x='21' y='12' width='5' height='14' fill='%23F0866C'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=JetBrains+Mono:wght@500&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{color-scheme:light}
+/* Layout: una columna tipo instrumento de medición; un paso por pantalla, color solo para los tres canales (V azul, A ámbar, K rojo). */
+:root{
+  --bg:#EDF0F3; --surface:#FFFFFF; --ink:#131C26; --muted:#55636F; --line:#D3DAE1;
+  --v:#2563D8; --a:#B7791F; --k:#C8452D;
+  --v-t:#E4ECFB; --a-t:#F7EBD3; --k-t:#F8E3DE;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F161D; --surface:#172029; --ink:#E7EDF2; --muted:#93A1AD; --line:#2A3743;
+  --v:#6EA0FF; --a:#E8B04A; --k:#F0866C;
+  --v-t:#18263F; --a-t:#33270F; --k-t:#3A1F19; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F161D; --surface:#172029; --ink:#E7EDF2; --muted:#93A1AD; --line:#2A3743;
+  --v:#6EA0FF; --a:#E8B04A; --k:#F0866C;
+  --v-t:#18263F; --a-t:#33270F; --k-t:#3A1F19; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5;
+  padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--ink);transition:width .25s}
+.meta{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--f-display);line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:34px}h2{font-size:25px}h3{font-size:18px}
+p{margin:0}.muted{color:var(--muted)}.small{font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{position:relative;text-align:left;font:inherit;color:inherit;background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:14px 14px;min-height:56px;cursor:pointer}
+.opt:hover{border-color:var(--muted)}
+.opt.main{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt.sec{border-color:var(--ink);border-style:dashed}
+.badge{position:absolute;top:-9px;right:10px;background:var(--ink);color:var(--bg);font-family:var(--f-mono);font-size:11px;padding:1px 7px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;border-radius:8px;padding:12px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);min-height:48px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.grow{flex:1}
+:focus-visible{outline:3px solid var(--v);outline-offset:2px}
+input[type=text]{font:inherit;width:100%;padding:12px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.parts{display:grid;grid-template-columns:1fr;gap:10px}
+.part{display:flex;gap:12px;align-items:baseline}
+.part b{font-family:var(--f-mono);font-size:12px;color:var(--muted);min-width:64px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:340px;margin:0 auto;width:100%}
+.cell{aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);cursor:pointer;padding:0}
+.cell.lit{background:var(--v);border-color:var(--v)}
+.cell.sel{background:var(--ink);border-color:var(--ink)}
+.timer{height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+.timer>i{display:block;height:100%;background:var(--v);width:100%;transform-origin:left;animation:drain 4s linear forwards}
+@keyframes drain{to{transform:scaleX(0)}}
+.tones{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tones .btn{padding:16px 0;font-family:var(--f-mono)}
+.seq{display:flex;gap:8px;justify-content:center}
+.seq span{width:38px;height:44px;border:1.5px solid var(--line);border-radius:6px;display:grid;place-items:center;font-family:var(--f-mono)}
+.pulse{width:14px;height:14px;border-radius:50%;background:var(--a);margin:0 auto;animation:p 1s ease-in-out infinite}
+@keyframes p{50%{transform:scale(1.7);opacity:.5}}
+@media (prefers-reduced-motion:reduce){.pulse,.timer>i{animation:none}.bar>i{transition:none}}
+.area{position:relative;height:270px;border:1.5px dashed var(--line);border-radius:10px;background:var(--bg);touch-action:manipulation}
+.area .gl{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);pointer-events:none}
+.area .gl i{border:1px solid var(--line);opacity:.5}
+.dot{position:absolute;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;border:0;background:var(--k);color:#fff;font-family:var(--f-mono);font-size:18px;cursor:pointer}
+.mk{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--ink);color:var(--bg);font-family:var(--f-mono);font-size:13px;display:grid;place-items:center;pointer-events:none}
+.res-top{display:flex;flex-direction:column;gap:6px}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:5px;width:fit-content}
+.c-V{background:var(--v-t);color:var(--v)}.c-A{background:var(--a-t);color:var(--a)}.c-K{background:var(--k-t);color:var(--k)}
+.rank{display:flex;flex-direction:column;gap:12px}
+.rk{display:grid;grid-template-columns:96px 1fr 52px;gap:10px;align-items:center}
+.rk .tr{height:16px;background:var(--line);border-radius:4px;overflow:hidden}
+.rk .tr i{display:block;height:100%}
+.f-V{background:var(--v)}.f-A{background:var(--a)}.f-K{background:var(--k)}
+.num{font-family:var(--f-mono);font-size:14px;text-align:right}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{font-family:var(--f-mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+td{font-family:var(--f-mono)}
+td:first-child{font-family:var(--f-body)}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+details{border-top:1px solid var(--line);padding-top:12px}
+summary{cursor:pointer;font-weight:600}
+textarea{width:100%;min-height:150px;font:14px var(--f-mono);background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:10px}
+
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+[hidden]{display:none!important}
+footer.wrap{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.5}
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  .bar,.meta,.row,#fb,details,footer{display:none!important}
+  .card{break-inside:avoid;border-color:#bbb}
+}
+</style>
+</head>
+<body><noscript><p style="padding:16px">Esta herramienta necesita JavaScript activado para funcionar.</p></noscript>
+<div class="wrap" id="app"></div>
+<footer class="wrap">Herramienta orientativa y educativa; no es un diagnóstico psicológico ni clínico. Tus respuestas no se envían ni se guardan: el cálculo ocurre en tu navegador. La página carga tipografías desde Google Fonts. Cristian Muñoz Mindset.</footer>
+<script>
+"use strict";
+var CH={V:{n:"Visual",c:"v"},A:{n:"Auditivo",c:"a"},K:{n:"Kinestésico",c:"k"}};
+var KEYS=["V","A","K"];
+
+/* Parte 1: preferencias en situaciones cotidianas (formato de elección situacional de Fleming, sin la dimensión lectura/escritura) */
+var Q=[
+ {t:"Vas a usar una herramienta o aplicación nueva. Lo que más te ayuda es:",o:{V:"Ver capturas, un esquema o un video del proceso.",A:"Que alguien te la explique hablando.",K:"Abrirla y probar botones hasta entender cómo funciona."}},
+ {t:"Alguien te pregunta cómo llegar a un lugar. Tú:",o:{V:"Le dibujas un mapa o le muestras uno.",A:"Se lo explicas de palabra, paso a paso.",K:"Lo acompañas o caminas con él parte del trayecto."}},
+ {t:"Quieres aprender un tema nuevo de negocios. Eliges:",o:{V:"Gráficos, esquemas y mapas de ideas.",A:"Una charla o un podcast para escuchar y comentar.",K:"Un caso real o una simulación para practicar."}},
+ {t:"Recuerdas una reunión de ayer. Lo primero que aparece es:",o:{V:"Cómo se veía el lugar y las caras de la gente.",A:"Lo que se dijo y el tono de voz.",K:"Cómo te sentiste y lo que hiciste."}},
+ {t:"Te presentan una propuesta comercial. Para decidir quieres:",o:{V:"Ver la tabla o el gráfico con los números.",A:"Escuchar la explicación y hacer preguntas.",K:"Hacer una prueba piloto o tocar el producto."}},
+ {t:"Para concentrarte en una tarea necesitas:",o:{V:"Un espacio ordenado, sin desorden a la vista.",A:"Silencio o un sonido de fondo que controles.",K:"Moverte, caminar o tener algo en las manos."}},
+ {t:"Cuando conoces a alguien, lo que más registras es:",o:{V:"Su aspecto y cómo se viste.",A:"Su voz y su manera de hablar.",K:"Su energía y cómo te hace sentir."}},
+ {t:"En tu tiempo libre disfrutas más:",o:{V:"Películas, fotografía o ver arte.",A:"Música, podcasts o conversar con amigos.",K:"Deporte, baile, cocinar o armar cosas."}},
+ {t:"Tienes que enseñarle algo a otra persona. Tú:",o:{V:"Dibujas o le muestras un ejemplo en pantalla.",A:"Se lo explicas conversando.",K:"Lo haces frente a ella y luego la dejas intentar."}},
+ {t:"Antes de una compra grande, lo que más pesa es:",o:{V:"Comparar fotos y cuadros comparativos.",A:"Escuchar la opinión de gente de confianza.",K:"Probarlo en persona y sentir cómo es."}},
+ {t:"Estás nervioso antes de presentar en público. Lo que haces:",o:{V:"Imaginas la sala y repasas la presentación en imágenes.",A:"Ensayas en voz alta o te hablas a ti mismo.",K:"Respiras, caminas y mueves el cuerpo."}},
+ {t:"Tienes un problema que resolver. Tu primer impulso:",o:{V:"Hacer un esquema para verlo completo.",A:"Hablarlo con alguien.",K:"Probar soluciones hasta que una funcione."}},
+ {t:"Para memorizar un número de teléfono:",o:{V:"Lo visualizas escrito.",A:"Lo repites en voz alta.",K:"Lo marcas con los dedos o lo tecleas en el aire."}},
+ {t:"Aprendes un ejercicio o baile nuevo. Prefieres:",o:{V:"Observar a alguien hacerlo primero.",A:"Escuchar las indicaciones y el conteo.",K:"Moverte enseguida y corregir sobre la marcha."}},
+ {t:"Un buen mentor para ti es quien:",o:{V:"Te muestra ejemplos y modelos concretos.",A:"Te explica y conversa contigo con calma.",K:"Te pone a practicar y te corrige en el hacer."}}
+];
+
+/* Parte 2: lenguaje natural (predicados sensoriales de Bandler y Grinder) */
+var L=[
+ {V:"Veo lo que quieres decir.",A:"Te escucho perfectamente.",K:"Siento que ya lo agarré."},
+ {V:"Esto se ve prometedor.",A:"Esto suena prometedor.",K:"Esto se siente prometedor."},
+ {V:"Necesito un panorama más claro.",A:"Necesito que me lo cuentes bien.",K:"Necesito un punto firme donde apoyarme."},
+ {V:"Mira, es evidente que hay que cambiar.",A:"Escucha, te lo digo fuerte y claro: hay que cambiar.",K:"Hay que ponerse manos a la obra y cambiar."},
+ {V:"Algo no me cuadra a simple vista.",A:"Algo me suena raro.",K:"Algo me da mala sensación."},
+ {V:"Enfoquemos el problema.",A:"Sintonicemos nuestras ideas.",K:"Agarremos el problema con firmeza."},
+ {V:"Imagínate cómo se verá el resultado.",A:"Cuéntame cómo suena el resultado.",K:"Siente cómo será el resultado."},
+ {V:"Déjame mostrarte mi punto de vista.",A:"Déjame decirte cómo lo oigo yo.",K:"Déjame darte una idea concreta que puedas tocar."}
+];
+
+var PERFIL={
+ V:{d:"Procesa mejor lo que puede ver: esquemas, imágenes, orden visual y ejemplos concretos en pantalla o papel.",
+    tips:["Muéstrale el resultado final antes de explicar el proceso.","Usa pizarras, mapas de ruta y resúmenes de una página.","En ventas: demostración visual, antes y después, tablas comparativas."]},
+ A:{d:"Procesa mejor lo que escucha y conversa: explicaciones habladas, preguntas, tono de voz y ritmo.",
+    tips:["Explica conversando y deja espacios para que repita con sus palabras.","Usa audios, llamadas de seguimiento y casos contados.","En ventas: escucha activa, preguntas abiertas y testimonios en voz."]},
+ K:{d:"Procesa mejor haciendo: práctica, movimiento, casos reales y sensación de avance con las manos en la tarea.",
+    tips:["Dale ejercicios prácticos y pasos pequeños para ejecutar.","Alterna explicación corta con práctica; usa pausas activas.","En ventas: prueba piloto, muestra tangible y primer paso inmediato."]}
+};
+
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+var S={step:0,name:"",q:Q.map(function(){return{main:null,sec:null}}),l:L.map(function(){return null}),
+  t:{V:null,A:null,K:null},skipT:false,
+  qOrd:Q.map(function(){return shuffle(KEYS)}),lOrd:L.map(function(){return shuffle(KEYS)})};
+
+var STEPS=[{type:"intro"}];
+Q.forEach(function(_,i){STEPS.push({type:"q",i:i})});
+L.forEach(function(_,i){STEPS.push({type:"l",i:i})});
+STEPS.push({type:"tintro"},{type:"tV"},{type:"tA"},{type:"tK"},{type:"result"});
+
+var app=document.getElementById("app");
+var timers=[];
+function clearTimers(){timers.forEach(clearTimeout);timers=[]}
+function go(n){clearTimers();S.step=Math.max(0,Math.min(STEPS.length-1,n));render();window.scrollTo(0,0)}
+
+function head(){
+  var st=STEPS[S.step];var pct=Math.round(S.step/(STEPS.length-1)*100);
+  var lab="";
+  if(st.type==="q")lab="Parte 1 de 3 · Preferencias · "+(st.i+1)+"/"+Q.length;
+  else if(st.type==="l")lab="Parte 2 de 3 · Tu lenguaje · "+(st.i+1)+"/"+L.length;
+  else if(st.type==="tintro"||st.type==="tV"||st.type==="tA"||st.type==="tK")lab="Parte 3 de 3 · Pruebas de desempeño";
+  else if(st.type==="result")lab="Resultado";
+  else lab="Evaluación";
+  return '<div><div class="meta"><span>'+lab+'</span><span>'+pct+'%</span></div><div class="bar" style="margin-top:6px"><i style="width:'+pct+'%"></i></div></div>';
+}
+
+function render(){
+  var st=STEPS[S.step];
+  var body="";
+  if(st.type==="intro")body=viewIntro();
+  else if(st.type==="q")body=viewQ(st.i);
+  else if(st.type==="l")body=viewL(st.i);
+  else if(st.type==="tintro")body=viewTIntro();
+  else if(st.type==="result")body=viewResult();
+  else body='<div class="card" id="task"></div>';
+  app.innerHTML=(st.type==="intro"?"":head())+body;
+  if(st.type==="tV")taskV();
+  if(st.type==="tA")taskA();
+  if(st.type==="tK")taskK();
+}
+
+function viewIntro(){
+  return '<div class="res-top"><span class="chip c-V" style="background:var(--surface);color:var(--muted);border:1px solid var(--line)">Escuela de Negocios · Herramienta de perfil</span>'+
+  '<h1>Perfil sensorial: visual, auditivo o kinestésico</h1></div>'+
+  '<p class="muted">Tres partes, unos 8 minutos. El perfil sale de lo que dices de ti y de cómo hablas. Las tres mini pruebas muestran cómo rindes en cada canal y se comparan con ese perfil.</p>'+
+  '<div class="card"><div class="parts">'+
+  '<div class="part"><b>PARTE 1</b><span>15 situaciones cotidianas. Eliges la que más te describe y, si quieres, una segunda.</span></div>'+
+  '<div class="part"><b>PARTE 2</b><span>8 frases. Eliges la que dirías de forma natural.</span></div>'+
+  '<div class="part"><b>PARTE 3</b><span>3 pruebas cortas de memoria: una por ver, una por oír y una haciendo. Son un contraste con tu perfil. Usa audífonos.</span></div></div>'+
+  '<label class="small muted" for="name">Nombre de la persona evaluada (opcional)</label>'+
+  '<input type="text" id="name" autocomplete="off" placeholder="Ej.: Andrea Pérez" value="'+esc(S.name)+'">'+
+  '<button class="btn" id="start">Comenzar</button></div>'+
+  '<details><summary>Fundamento y alcance</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px" class="small">'+
+  '<p>La evaluación mezcla tres líneas de trabajo: el modelo de sistemas de representación visual, auditivo y kinestésico de Bandler y Grinder (1976), que propone detectar el canal preferido por los predicados que una persona usa al hablar; el cuestionario VARK de Neil Fleming y Colin Mills (1992), que usa situaciones cotidianas y permite más de una respuesta; y el trabajo de Barbe y Swassing (1979) sobre fortalezas de modalidad, que mide desempeño por canal con tareas y no solo con encuestas. Dunn y Dunn aportan la idea de medir las preferencias perceptuales junto a otros factores del entorno.</p>'+
+  '<p>Esta versión usa tres canales (la dimensión lectura/escritura de VARK queda fuera). Los resultados describen preferencias y rendimiento en una prueba corta. La revisión de Pashler, McDaniel, Rohrer y Bjork (2008) no encontró evidencia sólida de que enseñar según el estilo mejore el aprendizaje, así que úsalo para adaptar la comunicación y para conocer a la persona, no para encasillarla.</p></div></details>';
+}
+
+function viewQ(i){
+  var a=S.q[i],q=Q[i];
+  var opts=S.qOrd[i].map(function(k){
+    var cls="opt"+(a.main===k?" main":"")+(a.sec===k?" sec":"");
+    var b=a.main===k?'<span class="badge">Principal</span>':(a.sec===k?'<span class="badge">También</span>':"");
+    return '<button class="'+cls+'" data-q="'+i+'" data-k="'+k+'">'+b+esc(q.o[k])+'</button>'}).join("");
+  return '<div class="card"><h2>'+esc(q.t)+'</h2><p class="small muted">Toca la opción que más te describe. Si otra también te describe, tócala después. Tócala de nuevo para quitarla.</p><div class="opts">'+opts+'</div></div>'+
+  '<div class="row"><button class="btn ghost" id="back"'+(S.step<2?" disabled":"")+'>Atrás</button><button class="btn grow" id="next"'+(a.main?"":" disabled")+'>Siguiente</button></div>';
+}
+function viewL(i){
+  var l=L[i];
+  var opts=S.lOrd[i].map(function(k){
+    return '<button class="opt'+(S.l[i]===k?" main":"")+'" data-l="'+i+'" data-k="'+k+'">'+esc(l[k])+'</button>'}).join("");
+  return '<div class="card"><h2>¿Cuál dirías tú de forma natural?</h2><p class="small muted">No pienses demasiado: elige la frase que te sale sin esfuerzo.</p><div class="opts">'+opts+'</div></div>'+
+  '<div class="row"><button class="btn ghost" id="back">Atrás</button></div>';
+}
+function viewTIntro(){
+  return '<div class="card"><h2>Tres pruebas cortas</h2>'+
+  '<p>Miden cuánto recuerdas según cómo recibes la información: mirando, escuchando o haciendo. Cada una dura menos de un minuto.</p>'+
+  '<ul class="small"><li>Para la prueba de audio, sube el volumen y usa audífonos.</li><li>No tomes notas ni uses ayudas externas.</li><li>Cada secuencia se muestra una sola vez.</li></ul>'+
+  '<div class="row"><button class="btn grow" id="tstart">Comenzar pruebas</button><button class="btn ghost" id="tskip">Omitir pruebas</button></div>'+
+  '<p class="small muted">Si las omites, el perfil se calcula igual con las partes 1 y 2. Solo faltará el contraste de desempeño.</p>'+fundP3()+'</div>';
+}
+
+/* ---------- Pruebas ---------- */
+function taskShell(title,desc){return '<h2>'+title+'</h2><p class="muted">'+desc+'</p><div id="tbody" style="display:flex;flex-direction:column;gap:14px"></div>'}
+
+function taskV(){
+  var root=document.getElementById("task");root.innerHTML=taskShell("Prueba visual","Memoriza qué cuadros se iluminan. Tendrás 4 segundos.");
+  var tb=document.getElementById("tbody");
+  var target=shuffle(Array.apply(null,{length:16}).map(function(_,i){return i})).slice(0,5);
+  var sel={};
+  function ready(){tb.innerHTML='<button class="btn" id="go">Mostrar cuadros</button>';document.getElementById("go").onclick=show}
+  function gridHtml(mode){var h='<div class="grid4">';for(var i=0;i<16;i++){var c="cell";if(mode==="show"&&target.indexOf(i)>-1)c+=" lit";if(mode==="recall"&&sel[i])c+=" sel";h+='<button class="'+c+'" data-c="'+i+'" aria-label="Cuadro '+(i+1)+'"></button>'}return h+"</div>"}
+  function show(){tb.innerHTML='<div class="timer"><i></i></div>'+gridHtml("show");timers.push(setTimeout(recall,4000))}
+  function recall(){
+    tb.innerHTML='<p class="small muted" style="text-align:center">Toca los 5 cuadros que se iluminaron.</p>'+gridHtml("recall")+'<button class="btn" id="ok">Confirmar</button>';
+    tb.querySelectorAll(".cell").forEach(function(b){b.onclick=function(){var i=+b.dataset.c;sel[i]=!sel[i];b.classList.toggle("sel",!!sel[i])}});
+    document.getElementById("ok").onclick=function(){
+      var hits=0,fp=0;Object.keys(sel).forEach(function(k){if(sel[k]){if(target.indexOf(+k)>-1)hits++;else fp++}});
+      S.t.V=Math.max(0,(hits-fp*5/11)/5);
+      tb.innerHTML='<p>Prueba visual completada.</p><button class="btn" id="cont">Continuar</button>';
+      document.getElementById("cont").onclick=function(){go(S.step+1)}}
+  }
+  ready();
+}
+
+var AC=null;
+function playTone(f,when,dur){
+  var o=AC.createOscillator(),g=AC.createGain();o.type="sine";o.frequency.value=f;
+  g.gain.setValueAtTime(0,when);g.gain.linearRampToValueAtTime(.25,when+.03);g.gain.linearRampToValueAtTime(0,when+dur);
+  o.connect(g);g.connect(AC.destination);o.start(when);o.stop(when+dur+.05)}
+function taskA(){
+  var FREQ=[262,330,392,523];
+  var root=document.getElementById("task");root.innerHTML=taskShell("Prueba auditiva","Escucharás 5 tonos, una sola vez. Luego los repites en el mismo orden.");
+  var tb=document.getElementById("tbody");
+  var seq=[];while(seq.length<5){var n=Math.floor(Math.random()*4);if(seq.length===0||seq[seq.length-1]!==n)seq.push(n)}
+  var ans=[];
+  function ready(){tb.innerHTML='<button class="btn" id="go">Reproducir secuencia</button><button class="btn ghost" id="noaudio">No puedo escuchar el audio</button>';
+    document.getElementById("go").onclick=play;
+    document.getElementById("noaudio").onclick=function(){S.skipT=true;go(STEPS.length-1)}}
+  function play(){
+    try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();AC.resume()}catch(e){S.skipT=true;tb.innerHTML='<p>Este navegador no reproduce audio. Se omiten las pruebas.</p><button class="btn" id="r">Ver resultado</button>';document.getElementById("r").onclick=function(){go(STEPS.length-1)};return}
+    tb.innerHTML='<div class="pulse"></div><p class="muted" style="text-align:center">Escuchando…</p>';
+    var t0=AC.currentTime+.4;seq.forEach(function(n,i){playTone(FREQ[n],t0+i*.8,.6)});
+    timers.push(setTimeout(recall,400+5*800+300));
+  }
+  function recall(){
+    function draw(){
+      var boxes="";for(var i=0;i<5;i++)boxes+='<span>'+(ans[i]!==undefined?ans[i]+1:"")+'</span>';
+      tb.innerHTML='<p class="small muted" style="text-align:center">Toca los tonos en el orden que escuchaste. 1 es el más grave y 4 el más agudo.</p><div class="seq">'+boxes+'</div>'+
+      '<div class="tones">'+[0,1,2,3].map(function(n){return '<button class="btn ghost" data-n="'+n+'">'+(n+1)+'</button>'}).join("")+'</div>'+
+      '<div class="row"><button class="btn ghost" id="del"'+(ans.length?"":" disabled")+'>Borrar último</button><button class="btn grow" id="ok"'+(ans.length===5?"":" disabled")+'>Confirmar</button></div>';
+      tb.querySelectorAll("[data-n]").forEach(function(b){b.onclick=function(){if(ans.length>=5)return;var n=+b.dataset.n;ans.push(n);playTone(FREQ[n],AC.currentTime+.01,.35);draw()}});
+      document.getElementById("del").onclick=function(){ans.pop();draw()};
+      document.getElementById("ok").onclick=function(){var m=0;for(var i=0;i<5;i++)if(ans[i]===seq[i])m++;S.t.A=Math.max(0,(m/5-1/4)/(3/4));
+        tb.innerHTML='<p>Prueba auditiva completada.</p><button class="btn" id="cont">Continuar</button>';document.getElementById("cont").onclick=function(){go(S.step+1)}};
+    }
+    draw();
+  }
+  ready();
+}
+
+function taskK(){
+  var root=document.getElementById("task");root.innerHTML=taskShell("Prueba kinestésica","Toca cada punto cuando aparezca, dos veces seguidas. Después lo repites de memoria en el espacio vacío.");
+  var tb=document.getElementById("tbody");
+  var cells=shuffle([0,1,2,3,4,5,6,7,8]).slice(0,4);
+  function pos(c){return{x:(c%3)*33.333+16.667,y:Math.floor(c/3)*33.333+16.667}}
+  function areaHtml(inner){return '<div class="area" id="area"><div class="gl">'+Array(10).join("<i></i>")+'</div>'+inner+'</div>'}
+  function ready(){tb.innerHTML='<button class="btn" id="go">Comenzar</button>';document.getElementById("go").onclick=function(){learn(0,0)}}
+  function learn(round,j){
+    if(j>=4){if(round===0){learn(1,0);return}recall();return}
+    var p=pos(cells[j]);
+    tb.innerHTML='<p class="small muted" style="text-align:center">Ronda '+(round+1)+' de 2 · punto '+(j+1)+' de 4</p>'+areaHtml('<button class="dot" style="left:'+p.x+'%;top:'+p.y+'%" id="dot">'+(j+1)+'</button>');
+    document.getElementById("dot").onclick=function(){learn(round,j+1)};
+  }
+  function recall(){
+    var taps=[];
+    function draw(){
+      var mk=taps.map(function(c,i){var p=pos(c);return '<div class="mk" style="left:'+p.x+'%;top:'+p.y+'%">'+(i+1)+'</div>'}).join("");
+      tb.innerHTML='<p class="small muted" style="text-align:center">Toca dónde estaban los 4 puntos, en orden. '+taps.length+' de 4.</p>'+areaHtml(mk)+
+      '<div class="row"><button class="btn ghost" id="del"'+(taps.length?"":" disabled")+'>Borrar último</button><button class="btn grow" id="ok"'+(taps.length===4?"":" disabled")+'>Confirmar</button></div>';
+      document.getElementById("area").onclick=function(e){
+        if(taps.length>=4)return;var r=this.getBoundingClientRect();
+        var cx=Math.min(2,Math.max(0,Math.floor((e.clientX-r.left)/r.width*3)));var cy=Math.min(2,Math.max(0,Math.floor((e.clientY-r.top)/r.height*3)));
+        taps.push(cy*3+cx);draw()};
+      document.getElementById("del").onclick=function(){taps.pop();draw()};
+      document.getElementById("ok").onclick=function(){var m=0;for(var i=0;i<4;i++)if(taps[i]===cells[i])m++;S.t.K=Math.max(0,(m/4-1/9)/(8/9));
+        tb.innerHTML='<p>Prueba kinestésica completada.</p><button class="btn" id="cont">Ver resultado</button>';document.getElementById("cont").onclick=function(){go(S.step+1)}};
+    }
+    draw();
+  }
+  ready();
+}
+
+/* ---------- Resultado ---------- */
+var WQ=15/23,WL=8/23; /* peso proporcional al número de ítems de cada parte */
+function shares(o){var s=o.V+o.A+o.K;return s?{V:o.V/s*100,A:o.A/s*100,K:o.K/s*100}:{V:100/3,A:100/3,K:100/3}}
+function topKey(o){return KEYS.slice().sort(function(a,b){return o[b]-o[a]})[0]}
+function perf(){
+  if(S.skipT||S.t.V===null||S.t.A===null||S.t.K===null)return null;
+  var mx=Math.max(S.t.V,S.t.A,S.t.K);
+  return{c:S.t,sh:shares(S.t),weak:mx<0.3,top:topKey(S.t)};
+}
+function compute(){
+  var q={V:0,A:0,K:0};S.q.forEach(function(a){q[a.main]+=2;if(a.sec)q[a.sec]+=1});
+  var l={V:0,A:0,K:0};S.l.forEach(function(k){if(k)l[k]++});
+  var Qs=shares(q),Ls=shares(l),f={};
+  KEYS.forEach(function(k){f[k]=WQ*Qs[k]+WL*Ls[k]});
+  var rank=KEYS.slice().sort(function(a,b){return f[b]-f[a]});
+  var gap=f[rank[0]]-f[rank[1]];
+  var agree=topKey(Qs)===rank[0]&&topKey(Ls)===rank[0];
+  var conf=agree?(gap>=12?"Alta":"Media"):"Baja";
+  var label;
+  if(gap>=12)label="Predominio "+CH[rank[0]].n.toLowerCase();
+  else if(gap>=5)label=CH[rank[0]].n+" con apoyo "+CH[rank[1]].n.toLowerCase();
+  else label="Perfil mixto: "+CH[rank[0]].n.toLowerCase()+" y "+CH[rank[1]].n.toLowerCase();
+  return{Qs:Qs,Ls:Ls,f:f,rank:rank,gap:gap,conf:conf,label:label,P:perf()};
+}
+function p0(x){return Math.round(x)+"%"}
+function summaryText(r){
+  var s="Perfil sensorial VAK"+(S.name?" · "+S.name:"")+"\n"+r.label+" (confianza "+r.conf.toLowerCase()+")\n";
+  r.rank.forEach(function(k){s+=CH[k].n+": "+p0(r.f[k])+"\n"});
+  s+="Cuestionario: V "+p0(r.Qs.V)+" · A "+p0(r.Qs.A)+" · K "+p0(r.Qs.K)+"\nLenguaje: V "+p0(r.Ls.V)+" · A "+p0(r.Ls.A)+" · K "+p0(r.Ls.K)+"\n";
+  s+=r.P?"Contraste de desempeño: V "+p0(r.P.sh.V)+" · A "+p0(r.P.sh.A)+" · K "+p0(r.P.sh.K)+(r.P.weak?" (rendimiento bajo, no interpretable)":""):"Contraste de desempeño: omitido";
+  return s;
+}
+function fundP3(){
+  return '<details><summary>Fundamento y lógica de las pruebas</summary><div class="small" style="display:flex;flex-direction:column;gap:12px;margin-top:10px">'+
+  '<h3>De dónde sale cada prueba</h3><ul>'+
+  '<li><b>Idea general.</b> Barbe y Milone (1981) distinguen la fortaleza (desempeño en una tarea) de la preferencia (lo que la persona dice que le gusta). Según ese artículo, la fortaleza se mide reconstruyendo secuencias de figuras geométricas cada vez más largas, presentadas por vista, oído y tacto, y se puntúa el porcentaje de aciertos por canal. No tuve acceso al manual del índice. Mis pruebas no replican ese método: en el original el contenido es el mismo en los tres canales y en las mías no lo es.</li>'+
+  '<li><b>Visual.</b> Inspirada en la prueba de bloques de Corsi (1972), que mide memoria visoespacial a corto plazo; en adultos el rango típico es de 5 a 6 elementos. Aquí se muestra un patrón de 5 cuadros entre 16 durante 4 segundos y luego se reconoce. Es una adaptación mía, no la prueba original.</li>'+
+  '<li><b>Auditiva.</b> Reproducción en orden de 5 tonos de 4 alturas, siguiendo el paradigma de amplitud de memoria serial. Diseño mío, sin normas.</li>'+
+  '<li><b>Kinestésica.</b> Aprender una secuencia de 4 posiciones tocándolas dos veces y reproducirla sin guía, al estilo de los paradigmas de aprendizaje de secuencias motoras. En una pantalla hay también un componente visoespacial, así que no aísla lo kinestésico.</li></ul>'+
+  '<h3>Fórmulas (corrección por azar)</h3>'+
+  '<p>Cada prueba tendría puntaje alto solo por adivinar, y el azar no es igual en las tres. Por eso uso la corrección clásica del modelo de alto umbral para elección con m alternativas: p = (observado − 1/m) / (1 − 1/m). El azar vale 0 y el desempeño perfecto vale 1; si queda bajo el azar se toma 0.</p>'+
+  '<ul><li><b>Auditiva</b> (m = 4 tonos por posición): A = (aciertos/5 − 1/4) / (3/4)</li>'+
+  '<li><b>Kinestésica</b> (m = 9 zonas por posición): K = (aciertos/4 − 1/9) / (8/9)</li>'+
+  '<li><b>Visual</b> (5 de 16 cuadros): V = (aciertos − falsas × 5/11) / 5. Es mi adaptación del mismo principio. Comprobé que al elegir 5 cuadros al azar el valor esperado es 0 (1,56 aciertos − 3,44 falsas × 5/11 = 0).</li></ul>'+
+  '<p>Los porcentajes que ves son cada puntaje dividido entre la suma de los tres, la misma forma de armar el perfil que se describe en investigaciones con el índice de Barbe y Swassing (Janowitz, 1992). Reparten 100 entre los canales de esa persona y no sirven para comparar personas. Si el mejor puntaje es menor a 30 %, la lectura se marca como no interpretable.</p>'+
+  '<h3>Por qué es solo un contraste</h3>'+
+  '<p>Un estudio con tareas de recuerdo de secuencias (An Evaluation of Modality Preference Using a Morse Code Recall Task) no encontró relación entre la preferencia declarada y el recuerdo visual o auditivo. Además, el canal que rindió mejor dependió del tipo de tarea: el oído en secuencias de tiempo y la vista en secuencias espaciales. Mi prueba visual es espacial y la auditiva es temporal, así que es esperable que rindan distinto por la tarea y no por la persona. Preferir un canal y rendir mejor en él son cosas distintas, por eso las pruebas no entran en el porcentaje del perfil.</p>'+
+  '<p>Sobre el índice original: una revisión de 1992 (Janowitz) no encontró datos de confiabilidad y señala que estudios previos no hallaron relación significativa con el rendimiento académico. Un estudio con 51 niños de primer grado (Kampwirth y MacKenzie, 1989) tampoco halló interacción entre la modalidad y la lectura. El índice se ha usado sobre todo con niños de kínder a tercer grado.</p>'+
+  '<p>Aun así sirven. En un estudio de 1983 con alumnos de quinto y sexto grado, solo la mitad pudo identificar parte de sus fortalezas perceptuales y menos del 20 % las acertó por completo (Hemen, 1983). Ver cómo rinde la persona abre una conversación útil.</p>'+
+  '<h3>Qué falta para que sea más fiable</h3><ul>'+
+  '<li>Cada prueba tiene un solo intento de 4 o 5 elementos: cada acierto mueve el puntaje 20 a 25 puntos.</li>'+
+  '<li>No hay normas ni dificultad igualada. Con 30 a 50 personas evaluadas se pueden calcular promedios por prueba y expresar el resultado como puntaje estándar en lugar de porcentaje.</li>'+
+  '<li>Úsalo para conversar y adaptar la comunicación, no como diagnóstico.</li></ul></div></details>';
+}
+function viewResult(){
+  var r=compute();var main=r.rank[0];
+  function bars(o,order){return order.map(function(k){return '<div class="rk"><span><span class="chip c-'+k+'">'+CH[k].n+'</span></span><div class="tr"><i class="f-'+k+'" style="width:'+o[k].toFixed(1)+'%"></i></div><span class="num">'+p0(o[k])+'</span></div>'}).join("")}
+  function row(nm,o,wt){return '<tr><td>'+nm+'</td><td>'+p0(o.V)+'</td><td>'+p0(o.A)+'</td><td>'+p0(o.K)+'</td><td>'+wt+'</td></tr>'}
+  var tbl='<div class="scroll"><table><thead><tr><th>Fuente</th><th>V</th><th>A</th><th>K</th><th>Peso</th></tr></thead><tbody>'+
+    row("Cuestionario (15 ítems)",r.Qs,p0(WQ*100))+row("Lenguaje (8 ítems)",r.Ls,p0(WL*100))+'</tbody></table></div>';
+  var confTxt=r.conf==="Alta"?"El cuestionario y el lenguaje señalan el mismo canal con claridad.":(r.conf==="Media"?"El cuestionario y el lenguaje coinciden, pero la diferencia entre canales es moderada.":"El cuestionario y el lenguaje no coinciden en el canal principal. Repite la evaluación o complétala con una conversación.");
+  var tips=PERFIL[main].tips.map(function(t){return "<li>"+esc(t)+"</li>"}).join("");
+  var second=r.gap<12?'<p class="small muted">Segundo canal: '+CH[r.rank[1]].n.toLowerCase()+'. '+PERFIL[r.rank[1]].d+'</p>':"";
+  var contrast;
+  if(!r.P){contrast='<p class="muted">Las pruebas se omitieron. El perfil de arriba no depende de ellas.</p>'}
+  else{
+    var po=KEYS.slice().sort(function(a,b){return r.P.sh[b]-r.P.sh[a]});var msg;
+    if(r.P.weak)msg="Rendimiento bajo en las tres pruebas, cerca del azar. Esta lectura no es interpretable: repítelas con calma y con audífonos.";
+    else if(r.P.top===main)msg="El canal en el que mejor rindió coincide con su preferencia.";
+    else msg="Rindió mejor en "+CH[r.P.top].n.toLowerCase()+", distinto de su preferencia ("+CH[main].n.toLowerCase()+"). Es un resultado frecuente y no invalida el perfil, porque preferir un canal y rendir mejor en él son cosas distintas. Úsalo para conversar con la persona.";
+    contrast='<div class="rank">'+bars(r.P.sh,po)+'</div><p class="small">'+msg+'</p>';
+  }
+  return '<div class="res-top"><span class="chip c-'+main+'">'+(S.name?esc(S.name)+" · ":"")+'Resultado</span><h1>'+esc(r.label)+'</h1></div>'+
+  '<div class="card"><h3>Perfil de preferencia</h3><div class="rank">'+bars(r.f,r.rank)+'</div><p class="small"><b>Confianza '+r.conf.toLowerCase()+'.</b> '+confTxt+'</p></div>'+
+  '<div class="card"><h3>Qué significa</h3><p>'+PERFIL[main].d+'</p>'+second+'<h3>Cómo comunicarte, enseñar o vender</h3><ul>'+tips+'</ul></div>'+
+  '<div class="card"><h3>Contraste de desempeño</h3>'+contrast+fundP3()+'</div>'+
+  '<div class="card"><h3>Detalle del perfil</h3>'+tbl+'<p class="small muted">El peso de cada parte es proporcional a su número de ítems.</p></div>'+
+  '<p class="small muted">Es una preferencia en situaciones cotidianas, no una capacidad fija ni una garantía de aprender mejor. Combina los tres canales cuando enseñes algo importante.</p>'+
+  '<div class="row"><button class="btn grow" id="copy">Copiar resultado</button><button class="btn ghost" id="print">Imprimir o guardar PDF</button><button class="btn ghost" id="again">Evaluar a otra persona</button></div><div id="fb"></div>';
+}
+
+/* ---------- Eventos ---------- */
+app.addEventListener("click",function(e){
+  var t=e.target.closest("button");if(!t)return;
+  if(t.id==="start"){var nm=document.getElementById("name");S.name=nm?nm.value.trim():"";go(1);return}
+  if(t.dataset.q!==undefined){var i=+t.dataset.q,k=t.dataset.k,a=S.q[i];
+    if(a.main===k){a.main=a.sec;a.sec=null}else if(a.sec===k){a.sec=null}else if(a.main===null){a.main=k}else{a.sec=k}
+    render();return}
+  if(t.dataset.l!==undefined){var j=+t.dataset.l;S.l[j]=t.dataset.k;render();timers.push(setTimeout(function(){go(S.step+1)},220));return}
+  if(t.id==="next"){go(S.step+1);return}
+  if(t.id==="back"){go(S.step-1);return}
+  if(t.id==="tstart"){go(S.step+1);return}
+  if(t.id==="tskip"){S.skipT=true;go(STEPS.length-1);return}
+  if(t.id==="again"){S.name="";S.skipT=false;S.t={V:null,A:null,K:null};S.q=Q.map(function(){return{main:null,sec:null}});S.l=L.map(function(){return null});S.qOrd=Q.map(function(){return shuffle(KEYS)});S.lOrd=L.map(function(){return shuffle(KEYS)});go(0);return}
+  if(t.id==="print"){window.print();return}
+  if(t.id==="copy"){var txt=summaryText(compute());var fb=document.getElementById("fb");
+    function fallback(){fb.innerHTML='<textarea id="ta" readonly>'+esc(txt)+'</textarea>';var ta=document.getElementById("ta");ta.focus();ta.select()}
+    try{navigator.clipboard.writeText(txt).then(function(){fb.innerHTML='<p class="small muted">Resultado copiado.</p>'},fallback)}catch(err){fallback()}
+    return}
+});
+render();
+</script>
+</body>
+</html>
