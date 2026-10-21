@@ -2,7 +2,7 @@
 
 Práctica inspirada en el ciclo Planificar–Hacer–Verificar–Actuar de ISO 9001. No es una certificación.
 
-**Versión actual:** 1.1.0 · 2026-10-20 · Próxima revisión: 2027-04-20 o antes si cambia la evidencia.
+**Versión actual:** 1.2.0 · 2026-10-21 · Próxima revisión: 2027-04-21 o antes si cambia la evidencia.
 
 ## Planificar
 - Alcance: estimar la preferencia visual, auditiva o kinestésica. No diagnostica ni predice rendimiento académico.
@@ -21,9 +21,11 @@ Práctica inspirada en el ciclo Planificar–Hacer–Verificar–Actuar de ISO 9
 | Manual del índice Barbe-Swassing | No se obtuvo | Declarado en la herramienta |
 | Recorrido completo y errores de consola | Prueba automatizada en jsdom | 0 errores |
 | Validación de correo y WhatsApp | Prueba automatizada | Correcto |
+| Imagen de vista previa y recursos de terceros | Auditoría automatizada | Presente; sin recursos de terceros |
 | Fiabilidad y validez de la herramienta | No hay datos | **Pendiente** |
 
 ## Actuar (registro de cambios)
+- **1.2.0** (2026-10-21): identidad visual de Orion FXI, tipografías incluidas en la página (sin Google Fonts), animaciones al avanzar e imagen de vista previa para compartir.
 - **1.1.0** (2026-10-20): bibliografía verificada, estado de la evidencia, sección PHVA, entrega opcional, marca y colaboración.
 - **1.0.0**: primera versión.
 

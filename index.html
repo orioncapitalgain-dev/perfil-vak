@@ -3,36 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#04070D">
 <title>Perfil sensorial VAK</title>
-<meta name="description" content="Test gratuito para identificar si eres visual, auditivo o kinestésico. Cuestionario, lenguaje y pruebas de desempeño, con la lógica explicada. Tus respuestas no salen de tu navegador.">
+<meta name="description" content="Test gratuito para identificar si eres visual, auditivo o kinestésico. Cuestionario, lenguaje y pruebas de desempeño, con la lógica y la bibliografía explicadas. Tus respuestas no salen de tu navegador.">
+<link rel="canonical" href="https://orioncapitalgain-dev.github.io/perfil-vak/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Orion FXI · Cristian Muñoz Mindset">
+<meta property="og:url" content="https://orioncapitalgain-dev.github.io/perfil-vak/">
 <meta property="og:title" content="Perfil sensorial VAK: visual, auditivo o kinestésico">
-<meta property="og:description" content="Test gratuito para identificar si eres visual, auditivo o kinestésico. Cuestionario, lenguaje y pruebas de desempeño, con la lógica explicada. Tus respuestas no salen de tu navegador.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23131C26'/><rect x='6' y='16' width='5' height='10' fill='%232563D8'/><rect x='13.5' y='8' width='5' height='18' fill='%23E8B04A'/><rect x='21' y='12' width='5' height='14' fill='%23F0866C'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=JetBrains+Mono:wght@500&family=Source+Sans+3:wght@400;600&display=swap">
+<meta property="og:description" content="Test gratuito para identificar si eres visual, auditivo o kinestésico. Cuestionario, lenguaje y pruebas de desempeño, con la lógica y la bibliografía explicadas. Tus respuestas no salen de tu navegador.">
+<meta property="og:image" content="https://orioncapitalgain-dev.github.io/perfil-vak/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logotipo de Orion FXI y el texto Perfil sensorial VAK">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://orioncapitalgain-dev.github.io/perfil-vak/assets/og.jpg">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-700.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{color-scheme:light}
+
 /* Layout: una columna tipo instrumento de medición; un paso por pantalla, color solo para los tres canales (V azul, A ámbar, K rojo). */
-:root{
-  --bg:#EDF0F3; --surface:#FFFFFF; --ink:#131C26; --muted:#55636F; --line:#D3DAE1;
-  --v:#2563D8; --a:#B7791F; --k:#C8452D;
-  --v-t:#E4ECFB; --a-t:#F7EBD3; --k-t:#F8E3DE;
-  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
-  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
-  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0F161D; --surface:#172029; --ink:#E7EDF2; --muted:#93A1AD; --line:#2A3743;
-  --v:#6EA0FF; --a:#E8B04A; --k:#F0866C;
-  --v-t:#18263F; --a-t:#33270F; --k-t:#3A1F19; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0F161D; --surface:#172029; --ink:#E7EDF2; --muted:#93A1AD; --line:#2A3743;
-  --v:#6EA0FF; --a:#E8B04A; --k:#F0866C;
-  --v-t:#18263F; --a-t:#33270F; --k-t:#3A1F19; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5;
   padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -100,15 +94,120 @@ details{border-top:1px solid var(--line);padding-top:12px}
 summary{cursor:pointer;font-weight:600}
 textarea{width:100%;min-height:150px;font:14px var(--f-mono);background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:10px}
 
-html{-webkit-text-size-adjust:100%}
-body{margin:0}
-[hidden]{display:none!important}
-footer.wrap{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.5}
+/* ===== Tema Orion FXI · v1.2 =====
+   Principios tomados de sitios de referencia (SpaceX, Apple): fondo oscuro profundo, tipografía grande con
+   mucho aire, una sola pregunta por pantalla, color de acento escaso y movimiento suave que guía la atención. */
+@font-face{font-family:"Barlow";font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/barlow-500.woff2) format("woff2")}
+@font-face{font-family:"Barlow";font-weight:600;font-style:normal;font-display:swap;src:url(assets/fonts/barlow-600.woff2) format("woff2")}
+@font-face{font-family:"Barlow";font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/barlow-700.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-weight:100 900;font-style:normal;font-display:swap;src:url(assets/fonts/inter-var.woff2) format("woff2")}
+:root{
+  --bg:#04070D; --surface:rgba(255,255,255,.045); --ink:#F2F5FA; --muted:#9BA8BC; --line:rgba(255,255,255,.13);
+  --v:#3DB8FF; --a:#F2B632; --k:#FF7A59;
+  --v-t:rgba(61,184,255,.14); --a-t:rgba(242,182,50,.14); --k-t:rgba(255,122,89,.14);
+  --gold:#F2B632; --blue:#3DB8FF; --ease:cubic-bezier(.2,.7,.2,1);
+  --f-display:"Barlow","Segoe UI",system-ui,sans-serif;
+  --f-body:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"Barlow","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark}
+html{background:var(--bg)}
+body{font-size:17px;line-height:1.6;position:relative;overflow-x:hidden;font-feature-settings:"tnum" 1;letter-spacing:-.005em}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(60% 45% at 15% -5%,rgba(61,184,255,.20),transparent 70%),
+             radial-gradient(55% 40% at 95% 105%,rgba(242,182,50,.16),transparent 70%),var(--bg)}
+body::after{content:"";position:fixed;left:0;right:0;top:-240px;bottom:-240px;z-index:-1;pointer-events:none;opacity:.7;
+  background-image:radial-gradient(1.2px 1.2px at 30px 40px,#fff,transparent),radial-gradient(1px 1px at 120px 90px,rgba(255,255,255,.8),transparent),
+    radial-gradient(1.4px 1.4px at 180px 160px,rgba(61,184,255,.9),transparent),radial-gradient(1px 1px at 70px 190px,rgba(242,182,50,.9),transparent),
+    radial-gradient(1px 1px at 230px 20px,rgba(255,255,255,.6),transparent);
+  background-size:260px 240px;animation:drift 140s linear infinite}
+@keyframes drift{to{transform:translateY(240px)}}
+.wrap{max-width:680px;gap:22px}
+/* Encabezado de marca */
+header.site{max-width:680px;margin:0 auto 26px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+header.site img{width:40px;height:40px;border-radius:50%;box-shadow:0 0 22px rgba(61,184,255,.35)}
+header.site .brand b{font-family:var(--f-display);font-weight:700;letter-spacing:.22em;font-size:15px}
+header.site .by{font-family:var(--f-display);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:right}
+/* Tipografía */
+h1,h2,h3{font-family:var(--f-display);letter-spacing:.01em}
+h1{font-size:clamp(38px,9.5vw,68px);font-weight:700;line-height:1.02;text-transform:uppercase;letter-spacing:.015em}
+h2{font-size:clamp(25px,5.6vw,36px);font-weight:600;line-height:1.18}
+h3{font-size:19px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--ink)}
+.res-top h1{background:linear-gradient(95deg,#fff 10%,var(--gold) 60%,#ffd97a);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.hero-logo{width:clamp(120px,32vw,176px);height:auto;align-self:center;border-radius:50%;animation:float 6s ease-in-out infinite;filter:drop-shadow(0 0 28px rgba(61,184,255,.35)) drop-shadow(0 0 46px rgba(242,182,50,.22))}
+@keyframes float{50%{transform:translateY(-8px)}}
+.intro-top{display:flex;flex-direction:column;gap:18px;text-align:center;align-items:center}
+.intro-top h1{text-align:center}
+/* Tarjetas de vidrio */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.chip{font-family:var(--f-display);font-weight:600;letter-spacing:.16em;border-radius:999px;padding:5px 13px;font-size:12px}
+/* Progreso */
+.bar{height:3px;background:rgba(255,255,255,.1);border-radius:3px}
+.bar>i{background:linear-gradient(90deg,var(--blue),var(--gold));box-shadow:0 0 14px rgba(61,184,255,.6);transition:width .7s var(--ease)}
+.meta{font-family:var(--f-display);font-weight:500;font-size:13px;letter-spacing:.16em}
+/* Opciones */
+.opts{gap:12px}
+.opt{border-radius:16px;padding:18px 20px;min-height:64px;font-size:17px;line-height:1.45;background:rgba(255,255,255,.035);border:1.5px solid var(--line);
+  transition:transform .25s var(--ease),border-color .25s,background .25s,box-shadow .25s}
+.opt:hover{transform:translateY(-2px);border-color:rgba(61,184,255,.7);background:rgba(61,184,255,.07);box-shadow:0 8px 28px rgba(61,184,255,.14)}
+.opt:active{transform:scale(.985)}
+.opt.main{border-color:var(--gold);background:rgba(242,182,50,.10);box-shadow:0 0 0 1px var(--gold),0 8px 30px rgba(242,182,50,.18)}
+.opt.sec{border-color:var(--gold);border-style:dashed;background:rgba(242,182,50,.05)}
+.badge{background:var(--gold);color:#1a1200;font-family:var(--f-display);font-weight:700;letter-spacing:.12em;border-radius:999px;padding:2px 10px;top:-11px}
+/* Botones */
+.btn{font-family:var(--f-display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;border-radius:999px;padding:14px 26px;min-height:52px;
+  background:var(--gold);border:1.5px solid var(--gold);color:#1a1200;transition:transform .25s var(--ease),box-shadow .25s,background .25s}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 30px rgba(242,182,50,.35)}
+.btn:active:not(:disabled){transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:rgba(255,255,255,.28)}
+.btn.ghost:hover:not(:disabled){border-color:var(--blue);box-shadow:0 10px 30px rgba(61,184,255,.2)}
+.btn:disabled{opacity:.3}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+input[type=text],input[type=email],input[type=tel]{background:rgba(255,255,255,.05);border:1.5px solid var(--line);border-radius:14px;color:var(--ink);padding:14px 16px;transition:border-color .25s,box-shadow .25s}
+input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(61,184,255,.25)}
+input::placeholder{color:#6f7d92}
+/* Resultado */
+.rk .tr{height:14px;border-radius:999px;background:rgba(255,255,255,.08)}
+.rk .tr i{border-radius:999px;box-shadow:0 0 14px currentColor}
+.f-V{background:var(--v);color:rgba(61,184,255,.5)}.f-A{background:var(--a);color:rgba(242,182,50,.5)}.f-K{background:var(--k);color:rgba(255,122,89,.5)}
+.num{font-family:var(--f-display);font-weight:600;font-size:17px}
+th{font-family:var(--f-display);letter-spacing:.12em}
+td{font-family:var(--f-body)}
+/* Pruebas */
+.cell{background:rgba(255,255,255,.05);border-radius:12px;transition:background .2s,transform .2s}
+.cell:hover{transform:scale(1.04)}
+.cell.lit{box-shadow:0 0 22px rgba(61,184,255,.6)}
+.area{border-radius:18px;background:rgba(255,255,255,.03)}
+.seq span{border-radius:10px}
+/* Secciones y pie */
+details{border-top:1px solid var(--line)}
+summary{font-family:var(--f-display);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:15px;padding:4px 0}
+section.wrap h2{font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
+footer.wrap{border-top:1px solid var(--line);padding-top:18px}
+/* Movimiento al avanzar de pantalla (solo cuando cambia el paso) */
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.985);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes growx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.enter>*{animation:rise .65s var(--ease) both}
+.enter>*:nth-child(2){animation-delay:.07s}.enter>*:nth-child(3){animation-delay:.14s}.enter>*:nth-child(4){animation-delay:.21s}.enter>*:nth-child(5){animation-delay:.28s}.enter>*:nth-child(n+6){animation-delay:.34s}
+.enter .opt{animation:rise .6s var(--ease) both}
+.enter .opt:nth-child(1){animation-delay:.18s}.enter .opt:nth-child(2){animation-delay:.27s}.enter .opt:nth-child(3){animation-delay:.36s}
+.enter .rk .tr i{transform-origin:left;animation:growx 1.2s var(--ease) .4s both}
+@media (prefers-reduced-motion:reduce){
+  .enter>*,.enter .opt,.enter .rk .tr i,.hero-logo,body::after{animation:none!important}
+  .bar>i,.opt,.btn,.cell{transition:none}}
+@media (max-width:520px){header.site .by{display:none}.card{padding:18px}.opt{padding:16px}}
+/* Impresión: documento claro y legible */
 @media print{
-  body{background:#fff;color:#000;padding:0}
-  .bar,.meta,.row,#fb,details,footer{display:none!important}
-  .card{break-inside:avoid;border-color:#bbb}
+  :root{--bg:#fff;--surface:#fff;--ink:#000;--muted:#444;--line:#bbb;--v:#1a6fc4;--a:#a86b00;--k:#c03b1f;--gold:#a86b00;--blue:#1a6fc4;--v-t:#e8f1fb;--a-t:#faf0d8;--k-t:#fbe6e0}
+  html,body{background:#fff!important}
+  body::before,body::after,header.site{display:none!important}
+  .card{backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+  .res-top h1{background:none;-webkit-text-fill-color:#000;color:#000}
+  .enter>*,.enter .rk .tr i{animation:none!important}
+  .rk .tr i{box-shadow:none}
 }
+
 
 .printonly{display:none}
 a{color:inherit}
@@ -119,9 +218,22 @@ section.wrap h2{font-size:18px;margin:0 0 8px}
 .refs li{padding-left:1.4em;text-indent:-1.4em}
 section.wrap h4{margin:12px 0 4px;font-size:14px}
 @media print{.printonly{display:block;margin:8px 0}.noprint,section.wrap{display:none!important}}
+
+
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+[hidden]{display:none!important}
+footer.wrap{margin-top:28px;font-size:13px;color:var(--muted);line-height:1.5}
+@media print{
+  .bar,.meta,.row,#fb,details,footer{display:none!important}
+  .card{break-inside:avoid;border-color:#bbb}
+}
+
+body[data-mid="1"] section.wrap{display:none}
 </style>
 </head>
-<body><noscript><p style="padding:16px">Esta herramienta necesita JavaScript activado para funcionar.</p></noscript>
+<body><header class="site"><a class="brand" href="https://orioncapitalgain-dev.github.io/perfil-vak/" aria-label="Orion FXI"><img src="assets/logo.png" width="40" height="40" alt="Logotipo de Orion FXI"><b>ORION FXI</b></a><span class="by">Cristian Muñoz Mindset</span></header>
+<noscript><p style="padding:16px">Esta herramienta necesita JavaScript activado para funcionar.</p></noscript>
 <div class="wrap" id="app"></div>
 <section class="wrap noprint" id="fundamento"><h2>Fundamento y bibliografía</h2>
 <details><summary>Estado de la evidencia, en lenguaje claro</summary><div class="small" style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
@@ -139,11 +251,11 @@ section.wrap h4{margin:12px 0 4px;font-size:14px}
 <li><b>Hacer:</b> construir el cuestionario, el lenguaje y las pruebas citando la fuente de cada decisión.</li>
 <li><b>Verificar:</b> comprobar cada cita contra una fuente consultada, probar el recorrido completo y revisar los cálculos.</li>
 <li><b>Actuar:</b> corregir, registrar los cambios y revisar de nuevo cuando aparezca evidencia nueva o comentarios.</li></ul>
-<p><b>Versión 1.1.0</b> · publicada el 2026-10-20 · próxima revisión: 2027-04-20 o antes si cambia la evidencia.</p>
-<p><b>Registro de cambios.</b> 1.1.0: bibliografía verificada, estado de la evidencia, entrega opcional del resultado por correo o WhatsApp, marca y colaboración. 1.0.0: primera versión con cuestionario, lenguaje y pruebas con corrección por azar.</p>
+<p><b>Versión 1.2.0</b> · publicada el 2026-10-21 · próxima revisión: 2027-04-21 o antes si cambia la evidencia.</p>
+<p><b>Registro de cambios.</b> 1.2.0: identidad visual de Orion FXI, tipografías incluidas en la página (sin Google Fonts), animaciones al avanzar e imagen de vista previa. 1.1.0: bibliografía verificada, estado de la evidencia, entrega opcional del resultado por correo o WhatsApp, marca y colaboración. 1.0.0: primera versión con cuestionario, lenguaje y pruebas con corrección por azar.</p>
 <p><b>Comentarios y correcciones:</b> escribe por mensaje directo a <a href="https://www.instagram.com/cristianmunoz.mindset/" target="_blank" rel="noopener">@CristianMunoz.Mindset</a> en Instagram.</p></div></details>
 </section>
-<footer class="wrap"><p>Herramienta orientativa y educativa; no es un diagnóstico psicológico ni clínico. Tus respuestas no se envían ni se guardan: el cálculo ocurre en tu navegador. Si decides recibir tu resultado, solo se abre tu app de correo o WhatsApp con el mensaje listo. La página carga tipografías desde Google Fonts. Cristian Muñoz Mindset · Instagram <a href="https://www.instagram.com/cristianmunoz.mindset/" target="_blank" rel="noopener">@CristianMunoz.Mindset</a>. En colaboración con Orion Academy FXI, una organización que busca diseñar y crear herramientas y metodologías para mejorar la calidad de vida de los seres humanos, al conocer e identificar sus fortalezas, debilidades, amenazas y oportunidades en un contexto general. Versión 1.1.0.</p></footer>
+<footer class="wrap"><p>Herramienta orientativa y educativa; no es un diagnóstico psicológico ni clínico. Tus respuestas no se envían ni se guardan: el cálculo ocurre en tu navegador. Si decides recibir tu resultado, solo se abre tu app de correo o WhatsApp con el mensaje listo. Las tipografías se incluyen en la propia página y no se cargan desde servidores externos. Cristian Muñoz Mindset · Instagram <a href="https://www.instagram.com/cristianmunoz.mindset/" target="_blank" rel="noopener">@CristianMunoz.Mindset</a>. En colaboración con Orion Academy FXI, una organización que busca diseñar y crear herramientas y metodologías para mejorar la calidad de vida de los seres humanos, al conocer e identificar sus fortalezas, debilidades, amenazas y oportunidades en un contexto general. Versión 1.2.0.</p></footer>
 <script>
 "use strict";
 var CH={V:{n:"Visual",c:"v"},A:{n:"Auditivo",c:"a"},K:{n:"Kinestésico",c:"k"}};
@@ -217,8 +329,9 @@ function head(){
   return '<div><div class="meta"><span>'+lab+'</span><span>'+pct+'%</span></div><div class="bar" style="margin-top:6px"><i style="width:'+pct+'%"></i></div></div>';
 }
 
+var lastStep=-1;
 function render(){
-  var st=STEPS[S.step];
+  var st=STEPS[S.step];app.className="wrap"+(S.step!==lastStep?" enter":"");lastStep=S.step;document.body.setAttribute("data-mid",(S.step>0&&S.step<STEPS.length-1)?"1":"");
   var body="";
   if(st.type==="intro")body=viewIntro();
   else if(st.type==="q")body=viewQ(st.i);
@@ -233,7 +346,7 @@ function render(){
 }
 
 function viewIntro(){
-  return '<div class="res-top"><span class="chip c-V" style="background:var(--surface);color:var(--muted);border:1px solid var(--line)">Escuela de Negocios · Herramienta de perfil</span>'+
+  return '<div class="intro-top"><img class="hero-logo" src="assets/logo.png" width="176" height="176" alt="Logotipo de Orion FXI"><span class="chip c-V" style="background:var(--surface);color:var(--muted);border:1px solid var(--line)">Escuela de Negocios · Herramienta de perfil</span>'+
   '<h1>Perfil sensorial: visual, auditivo o kinestésico</h1></div>'+
   '<p class="muted">Tres partes, unos 8 minutos. El perfil sale de lo que dices de ti y de cómo hablas. Las tres mini pruebas muestran cómo rindes en cada canal y se comparan con ese perfil.</p>'+
   '<div class="card"><div class="parts">'+

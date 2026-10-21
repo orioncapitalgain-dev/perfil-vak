@@ -1,6 +1,6 @@
 # Perfil sensorial VAK
 
-Herramienta web gratuita para estimar si una persona tiene preferencia visual, auditiva o kinestésica. Es un solo archivo (`index.html`), sin dependencias ni servidor.
+Herramienta web gratuita para estimar si una persona tiene preferencia visual, auditiva o kinestésica. Es una carpeta estática: `index.html` y `assets/` (logo, tipografías e imagen de vista previa), sin dependencias ni servidor.
 
 ## Cómo funciona
 
@@ -20,7 +20,7 @@ Al final, la persona puede escribir su correo o WhatsApp. Se abre su aplicación
 
 ## Privacidad
 
-No hay servidor ni base de datos. Las respuestas no se envían ni se guardan: todo se calcula en el navegador. Lo único externo son las tipografías de Google Fonts.
+No hay servidor ni base de datos. Las respuestas no se envían ni se guardan: todo se calcula en el navegador. No se carga nada de servidores de terceros: las tipografías (Barlow e Inter, licencia SIL OFL) van incluidas en `assets/fonts`.
 
 ## Publicar en GitHub Pages (Windows PowerShell)
 
@@ -35,7 +35,7 @@ GitHub Pages es gratuito, pero en el plan GitHub Free solo funciona con reposito
 cd $HOME\Documents
 git clone https://github.com/TU_USUARIO/perfil-vak.git
 cd perfil-vak
-# Copia aquí index.html y .nojekyll
+# Copia aquí index.html, .nojekyll y la carpeta assets
 git add .
 git commit -m "Publica la herramienta Perfil sensorial VAK"
 git push origin main
@@ -49,13 +49,17 @@ git push origin main
 ```powershell
 cd $HOME\Documents\TU_REPOSITORIO
 mkdir docs
-# Copia index.html y .nojekyll dentro de docs
+# Copia index.html, .nojekyll y la carpeta assets dentro de docs
 git add docs
 git commit -m "Agrega herramienta Perfil sensorial VAK"
 git push origin main
 ```
 
 En **Settings → Pages** elige `main` y la carpeta `/docs`. La dirección será `https://TU_USUARIO.github.io/TU_REPOSITORIO/`.
+
+## Diseño
+
+Tema oscuro con los colores del logotipo de Orion FXI (azul eléctrico y dorado), tipografía Barlow para títulos y Inter para texto, y animaciones suaves al avanzar de pregunta. Respeta la preferencia «reducir movimiento» del sistema. Al imprimir, el documento sale en claro.
 
 ## Actualizar
 
